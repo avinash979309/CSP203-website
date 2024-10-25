@@ -1,0 +1,188 @@
+{% extends "base_profile.html" %}
+
+{% block content %}
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 40%;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a.button {
+            padding: 8px 16px;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a.button:hover {
+            background-color: #27ae60;
+        }
+
+        .pagination-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination-links a {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 5px;
+            background-color: #f8f9fa;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .pagination-links a:hover {
+            background-color: #e9ecef;
+        }
+
+        .pagination-info {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .no-skills {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .add-skill-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .add-skill-link:hover {
+            background-color: #e55342;
+        }
+    </style>
+</head>
+
+<h2>Skills List</h2>
+
+<form method="get" action="{% url 'skill_list' %}">
+    <input type="text" name="q" placeholder="Search skills..." value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Skill Name</th>
+            <th>Description</th>
+            <th>Rating</th>
+            <th>Trade</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for skill in skills %}
+        <tr>
+            <td>{{ skill.skill_name }}</td>
+            <td>{{ skill.description }}</td>
+            <td>{{ skill.rating }}</td>
+            <td><a href="{% url 'initiate_trade' %}?skill_id={{ skill.id }}" class="button">Trade now</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="no-skills">No skills available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination-container">
+    <span class="pagination-info">Page {{ skills.number }} of {{ skills.paginator.num_pages }}</span>
+    <div class="pagination-links">
+        {% if skills.has_previous %}
+            <a href="?page=1&q={{ query }}">First</a>
+            <a href="?page={{ skills.previous_page_number }}&q={{ query }}">Previous</a>
+        {% endif %}
+        <span>Page {{ skills.number }}</span>
+        {% if skills.has_next %}
+            <a href="?page={{ skills.next_page_number }}&q={{ query }}">Next</a>
+            <a href="?page={{ skills.paginator.num_pages }}&q={{ query }}">Last</a>
+        {% endif %}
+    </div>
+</div>
+
+<a href="{% url 'add_skill' %}" class="add-skill-link">Add New Skill</a>
+{% endblock %}

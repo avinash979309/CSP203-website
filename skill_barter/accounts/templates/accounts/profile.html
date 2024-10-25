@@ -1,0 +1,78 @@
+{% extends "base_profile.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-details {
+            text-align: center;
+        }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border: 2px solid #007BFF;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .edit-link {
+            margin-top: 20px;
+        }
+        .edit-link a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            border: 1px solid #007BFF;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .edit-link a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="profile-details">
+        <!-- Display the user's profile photo -->
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.username }}'s Profile Picture" class="profile-pic">
+        {% else %}
+            <img src="{% static 'img/default.jpg' %}" alt="Profile Picture" class="profile-pic">
+        {% endif %}
+        <h2>{{ profile.user.username }}'s Profile</h2>
+        <p><span>Skills:</span> {{ profile.skills }}</p>
+        <p><span>Experience:</span> {{ profile.experience }}</p>
+        <p><span>Rating:</span> {{ profile.rating }}</p>
+        <div class="edit-link">
+            <a href="{% url 'edit_profile' profile.id %}">Edit Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

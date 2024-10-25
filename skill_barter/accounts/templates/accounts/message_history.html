@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message History - Skill Barter</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: right;  /* Align links to the right */
+            margin: 0;  /* Remove default margin */
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px; /* Space out the links */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        select {
+            padding: 10px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        select:focus {
+            border-color: #2980b9;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        li {
+            background-color: #ecf6f8;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        strong {
+            color: #34495e;
+        }
+
+        em {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        a {
+            color: #3498db;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #3498db;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SKILL BARTER</h1>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+              
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h2>Message History</h2>
+
+            <!-- Dropdown for selecting a user to send a message to -->
+            <div>
+                <form action="{% url 'send_message' %}" method="GET">
+                    <label for="user_select">Send a message to:</label>
+                    <select id="user_select" name="user_id">
+                        <option value="">Select a user</option>
+                        {% for user, messages in user_messages.items %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+
+            {% if user_messages %}
+                <ul>
+                    {% for user, messages in user_messages.items %}
+                        <li>
+                            <strong>Messages with {{ user.username }}:</strong>
+                            <ul>
+                                {% for message in messages %}
+                                    <li>
+                                        <strong>{{ message.sender.username }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em>
+                                    </li>
+                                {% empty %}
+                                    <li>No messages exchanged yet.</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No messages exchanged yet.</p>
+            {% endif %}
+            
+            <p>Want to connect with other users?</p>
+            <a href="{% url 'search' %}">Go to Users</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 skill-barter</p>
+    </footer>
+</body>
+</html>

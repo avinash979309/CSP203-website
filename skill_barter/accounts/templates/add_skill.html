@@ -1,0 +1,74 @@
+{% extends "base_profile.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Makes sure it occupies the full height */
+    }
+    main {
+        flex: 1; /* Allows main content to grow */
+        padding: 20px;
+        padding-bottom: 100px; /* Add space for footer */
+    }
+    h2 {
+        color: #333;
+    }
+    form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"], input[type="number"], textarea {
+        padding: 12px;
+        width: calc(100% - 24px);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+    button {
+        padding: 12px 18px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px; /* Space above button */
+    }
+    button:hover {
+        background-color: #218838;
+    }
+    a {
+        text-decoration: none;
+        color: #007BFF;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        position: relative;
+        margin-top: 20px;
+    }
+</style>
+
+<h2>Add Skill</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style="margin-top: 20px;">
+        <button type="submit">Add Skill</button>
+    </div>
+</form>
+<a href="{% url 'skill_list' %}">Back to Skills</a>
+{% endblock %}

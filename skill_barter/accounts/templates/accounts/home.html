@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <div class="icon-container">
+            <a href="{% url 'profile' request.user.id %}" class="icon">
+                <img src="{% static 'img/profile.png' %}" alt="Profile Icon">
+                <span>Profile</span>
+            </a>
+            <a href="{% url 'skill_list' %}" class="icon">
+                <img src="{% static 'img/skills.png' %}" alt="Skills Icon">
+                <span>Skills</span>
+            </a>
+            <a href="{% url 'search' %}" class="icon">
+                <img src="{% static 'img/search.png' %}" alt="Search Skills Icon">
+                <span>Search Users</span>
+            </a>
+            <a href="{% url 'initiate_trade' %}" class="icon">  <!-- Replace skill_id=1 with a relevant skill ID -->
+                <img src="{% static 'img/trade.png' %}" alt="Initiate Trade Icon">
+                <span>Initiate Trade</span>
+            </a>
+            <a href="{% url 'trade_list' %}" class="icon">
+                <img src="{% static 'img/trade_list.png' %}" alt="Trade List Icon">
+                <span>Trade List</span>
+            </a>
+            <a href="{% url 'notification_list' %}" class="icon">  <!-- Use the correct URL for notifications -->
+                <img src="{% static 'img/notifications.png' %}" alt="Notifications Icon">
+                <span>Notifications</span>
+            </a>
+
+            <!-- New Message History Icon -->
+            <a href="{% url 'message_history' %}" class="icon">
+                <img src="{% static 'img/message_history.png' %}" alt="Message History Icon">
+                <span>Message History</span>
+            </a>                       
+        </div>
+    </div>
+</body>
+</html>

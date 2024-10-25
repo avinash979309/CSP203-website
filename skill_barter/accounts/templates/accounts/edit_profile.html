@@ -1,0 +1,108 @@
+{% extends "base_profile.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 15px;
+            align-items: center;
+        }
+        form input[type="text"],
+        form input[type="file"],
+        form textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        form button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer fix */
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <!-- Display Profile Picture -->
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.username }}'s Profile Picture" class="profile-pic">
+    {% else %}
+        <img src="{% static 'img/default.jpg' %}" alt="Profile Picture" class="profile-pic">
+    {% endif %}
+
+    <!-- Header with Username -->
+    <h2>Edit {{ profile.user.username }}'s Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data" action="{% url 'edit_profile' profile.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="{% url 'profile' profile.id %}">Cancel</a>
+</div>
+{% endblock %}

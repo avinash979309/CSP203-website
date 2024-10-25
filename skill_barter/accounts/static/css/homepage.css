@@ -1,0 +1,80 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f4f9;  /* Lighter background for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+    background-image: url('{% static "img/background.jpg" %}'); /* Optional background image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50; /* Darker title color */
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.icon {
+    background-color: #fff; /* White background for icons */
+    border-radius: 15px;
+    margin: 15px;
+    padding: 25px;
+    width: 150px;  /* Increased width for better visibility */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;  /* Positioning for the hover effect */
+    overflow: hidden;  /* Overflow hidden for a clean effect */
+}
+
+.icon img {
+    width: 60px; /* Increased icon size */
+    height: 60px;
+    transition: transform 0.3s;  /* Smooth icon scaling on hover */
+}
+
+.icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background-color: #3498db;  /* Change background color on hover */
+    color: white;  /* Change text color on hover */
+}
+
+.icon:hover img {
+    transform: scale(1.1);  /* Scale up image on hover */
+}
+
+/* Optional: Add a gradient background to the icon container */
+.icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+    border-radius: 15px;
+    z-index: 0; /* Set behind the icons */
+}
+
+/* To ensure the icons are on top of the gradient */
+.icon-container .icon {
+    position: relative;
+    z-index: 1;
+}
