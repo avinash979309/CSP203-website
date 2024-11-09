@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background: #333;
+    background: #2d3480;
     color: #fff;
     padding: 10px 0;
     text-align: center;
@@ -35,13 +35,15 @@ header nav ul li a {
 
 footer {
     text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #2d3480;
+    color: white;
     position: relative;
     bottom: 0;
+    
     width: 100%;
-}
+  }
 
 
 /* accounts/static/css/style.css */
