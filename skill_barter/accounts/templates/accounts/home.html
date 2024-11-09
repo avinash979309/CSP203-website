@@ -5,43 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>Home</title>
 </head>
-<body>
+<body style="background-image: url({% static 'img/trade.png' %});">
     <div class="container">
-        <h1>Welcome, {{ request.user.username }}!</h1>
+        <!-- Profile Icon (Top Left) -->
+        <a href="{% url 'profile' request.user.id %}" class="icon top-left" id="profile">
+            <i class="fa-solid fa-user fa-2x" ></i><br><br>
+            <span>{{ request.user.username }}</span>
+        </a>
+
+           
+        <!-- Message History Icon (Next to Notifications) -->
+        <a href="{% url 'message_history' %}" class="icon top-right" id="message-history">
+            <i class="fa-solid fa-inbox fa-2x"></i><br>
+            <span>Message History</span>
+        </a>
+
+        <!-- Notifications Icon (Top Right) -->
+        <a href="{% url 'notification_list' %}" class="icon top-right" id="notification">
+            <i class="fa-solid fa-bell fa-2x"></i><br><br>
+            <span>Notifications</span>
+        </a>
+
+        <span>
+            <h1>Skill Barter System</h1>
+        </span>
+
+       
+
+        <!-- Main Icon Container (Center) -->
         <div class="icon-container">
-            <a href="{% url 'profile' request.user.id %}" class="icon">
-                <img src="{% static 'img/profile.png' %}" alt="Profile Icon">
-                <span>Profile</span>
-            </a>
             <a href="{% url 'skill_list' %}" class="icon">
-                <img src="{% static 'img/skills.png' %}" alt="Skills Icon">
+                <img src="{% static 'img/skills.png' %}" alt="Skills Icon"><br><br>
                 <span>Skills</span>
             </a>
-            <a href="{% url 'search' %}" class="icon">
-                <img src="{% static 'img/search.png' %}" alt="Search Skills Icon">
-                <span>Search Users</span>
-            </a>
-            <a href="{% url 'initiate_trade' %}" class="icon">  <!-- Replace skill_id=1 with a relevant skill ID -->
-                <img src="{% static 'img/trade.png' %}" alt="Initiate Trade Icon">
+            <a href="{% url 'initiate_trade' %}" class="icon">
+                <img src="{% static 'img/trade.png' %}" alt="Initiate Trade Icon"><br><br>
                 <span>Initiate Trade</span>
             </a>
             <a href="{% url 'trade_list' %}" class="icon">
-                <img src="{% static 'img/trade_list.png' %}" alt="Trade List Icon">
+                <img src="{% static 'img/trade_list.png' %}" alt="Trade List Icon"><br><br>
                 <span>Trade List</span>
             </a>
-            <a href="{% url 'notification_list' %}" class="icon">  <!-- Use the correct URL for notifications -->
-                <img src="{% static 'img/notifications.png' %}" alt="Notifications Icon">
-                <span>Notifications</span>
+            <a href="{% url 'search' %}" class="icon">
+                <img src="{% static 'img/search.png' %}" alt="Search Skills Icon"><br><br>
+                <span>Search Users</span>
             </a>
-
-            <!-- New Message History Icon -->
-            <a href="{% url 'message_history' %}" class="icon">
-                <img src="{% static 'img/message_history.png' %}" alt="Message History Icon">
-                <span>Message History</span>
-            </a>                       
         </div>
     </div>
+
 </body>
+<footer>
+    &copy; 2024 skill-barter
+</footer>
 </html>

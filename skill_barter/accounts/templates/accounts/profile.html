@@ -71,8 +71,16 @@
         <p><span>Experience:</span> {{ profile.experience }}</p>
         <p><span>Rating:</span> {{ profile.rating }}</p>
         <div class="edit-link">
-            <a href="{% url 'edit_profile' profile.id %}">Edit Profile</a>
+            <a href="{% url 'edit_profile' profile.id %}"><i class="fa-regular fa-pen-to-square"></i>Edit Profile</a>
         </div>
+        <br>
+        <div class="edit-link">
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        {% endif %}
+        </div>
+            <!-- Only display the logout link if the user is authenticated -->
+           
     </div>
 </div>
 {% endblock %}

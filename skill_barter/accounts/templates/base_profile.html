@@ -6,19 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Project - Profile{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
         <h1>SKILL BARTER</h1>
-        <nav>
-            <ul>
-                <!-- Only display the logout link if the user is authenticated -->
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+        <a style="text-decoration: none;" href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Home</a>
     </header>
     
     <main>
@@ -26,7 +20,7 @@
     </main>
     
     <footer>
-        <p>&copy; 2024 skill-barter</p>
+        &copy; 2024 skill-barter
     </footer>
 </body>
 </html>
