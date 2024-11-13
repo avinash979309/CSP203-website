@@ -196,7 +196,7 @@ def initiate_trade(request):
                 'error': 'You cannot trade a skill for itself.'
             })
 
-        # Create the trade request
+        # Create the trade request for the user
         trade = SkillTrade.objects.create(
             offered_by=request.user,
             offered_skill=offered_skill,
