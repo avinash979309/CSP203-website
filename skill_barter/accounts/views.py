@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator  # Import Paginator
 from django.views.generic import View
 
-
+#this is custom login view
 class CustomLoginView(LoginView):
     template_name = 'login.html'
 
