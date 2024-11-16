@@ -30,7 +30,7 @@ class ProfileForm(forms.ModelForm):
 class SkillForm(forms.ModelForm):
     class Meta:
         model = Skill
-        fields = ['skill_name', 'description', 'rating']  # Fields for the skill form
+        fields = ['skill_name', 'description', 'rating']  # these are Fields for the skill form
 
 
 

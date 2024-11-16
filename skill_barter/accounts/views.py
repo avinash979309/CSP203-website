@@ -13,7 +13,8 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator  # Import Paginator
 from django.views.generic import View
 
-
+#this is custom login view
+#login view class
 class CustomLoginView(LoginView):
     template_name = 'login.html'
 
@@ -196,7 +197,7 @@ def initiate_trade(request):
                 'error': 'You cannot trade a skill for itself.'
             })
 
-        # Create the trade request
+        # Create the trade request for the user
         trade = SkillTrade.objects.create(
             offered_by=request.user,
             offered_skill=offered_skill,

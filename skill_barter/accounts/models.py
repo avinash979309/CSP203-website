@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to='profile_pics/', default='default.jpg')
-    skills = models.TextField(blank=True)  # Comma-separated skills
+    skills = models.TextField(blank=True) 
     experience = models.PositiveIntegerField(default=0)  # Years of experience
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)  # User rating (0-5)
 
