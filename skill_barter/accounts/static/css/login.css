@@ -5,8 +5,7 @@
     border: 1px solid #ccc;
     border-radius: 25px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-radius: 5px;
+    box-shadow: 0 2px 10px 12px rgba(0,0,0,0.1);
 }
 
 .login-box h2 {
@@ -30,7 +29,7 @@
 }
 
 .login-box form button:hover {
-    background-color: #0056b3;
+    background-color: #2d3480;
 }
 
 .login-box p {
