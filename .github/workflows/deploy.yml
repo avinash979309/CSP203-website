@@ -42,3 +42,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+      - name: Debug file paths
+        run: |
+          ls -l /github/workspace/
+          ls -l /github/workspace/skill_barter/venv/bin
+
