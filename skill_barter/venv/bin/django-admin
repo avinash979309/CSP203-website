@@ -1,4 +1,4 @@
-#!/home/maharshi/Desktop/projects/CSP203-website/skill_barter/venv/bin/python3
+#!/home/maharshi/Desktop/projects/CSP203-website/skill_barter/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

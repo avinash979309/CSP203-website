@@ -1,6 +1,5 @@
-
 /*body style*/
-body{
+body {
   font-family: 'Arial', sans-serif;
   content: "";
   position: absolute;
@@ -17,16 +16,13 @@ body{
   margin: 0;
 }
 
-
-
 .container {
   position: relative; /* Necessary for the absolute positioning inside it */
   text-align: center;
-  padding: 50px;
+  padding: 30px;
   background-color: #c4e9ec9d;
   border-radius: 10px;
-  height: inherit;
-  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  height: 100%; /* Allow height to adjust based on content */
 }
 
 /* Top Left (Profile) and Top Right (Notifications & Message History) Icons */
@@ -37,7 +33,7 @@ body{
 }
 
 #profile {
-  width: 70px;
+  width: 50px; /* Adjusted size for responsiveness */
 }
 
 #notification {
@@ -50,7 +46,7 @@ body{
 #message-history {
   position: absolute;
   top: 20px;
-  right: 150px;
+  right: 140px;
   width: 70px;
 }
 
@@ -60,14 +56,14 @@ body{
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 100px; /* Space for header */
+  margin-top: 50px; /* Adjusted for responsiveness */
 }
 
 .icon {
   background-color: #c4e9ec;
   border-radius: 15px;
-  padding: 25px;
-  width: 150px;
+  padding: 20px;
+  width: 120px; /* Adjusted width for responsiveness */
   box-shadow: 0 4px 15px #2d3480b0;
   text-decoration: none;
   color: #333;
@@ -75,8 +71,8 @@ body{
 }
 
 .icon img {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   transition: transform 0.3s;
 }
 
@@ -93,10 +89,11 @@ body{
 
 h1 {
   color: #2d3480;
-  font-size: 3em;
-  margin-top: 80px;
-  text-shadow: 3px 3px 6px #ffffff;
+  font-size: 2.5em;
+  margin-top: 100px;
+  text-shadow: 2px 2px 5px #ffffff;
 }
+
 footer {
   text-align: center;
   margin-top: 20px;
@@ -105,6 +102,72 @@ footer {
   color: white;
   position: fixed;
   bottom: 0;
-  
   width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+    margin-top: 100px;
+  }
+
+  .icon {
+    padding: 15px;
+    width: 100px;
+  }
+
+  .icon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  #profile, #notification, #message-history {
+    scale:0.8;
+  }
+  #notification{
+      width:auto;
+      right:0px;
+  }
+
+  .container {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  footer {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+    margin-top: 100px;
+  }
+
+  .icon {
+    padding: 10px;
+    width: 80px;
+  }
+
+  .icon img {
+    width: 30px;
+    height: 30px;
+  }
+  #message-history{
+     right:100px;
+  }
+
+
+  #profile, #notification, #message-history {
+    scale:0.6;
+  }
+  #notification{
+      width:auto;
+      right:0px;
+  }
+  footer {
+    font-size: 0.8em;
+  }
 }

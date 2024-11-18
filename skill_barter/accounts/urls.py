@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 from .views import send_message, message_history
+from django.shortcuts import redirect
 
 #here write your urls
 #list of urls
